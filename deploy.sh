@@ -1,9 +1,9 @@
 #!/bin/bash
 
 NAME=ENDURANCE
-DIR=/etc/endurance/current/endurance
-BACKUPDIR=/etc/endurance/current/endurance_backup
-TEMPDIR=/etc/endurance/current/endurance_temp
+DIR=/home/endurance/public_html
+BACKUPDIR=/home/endurance/public_html_backup
+TEMPDIR=/home/endurance/public_html_temp
 
 
 
