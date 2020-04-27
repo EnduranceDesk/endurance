@@ -55,6 +55,7 @@ php artisan migrate --force
 
 echo "Removing deploy.sh from current: $TEMPDIR"
 rm -rf deploy.sh
+rm -rf update.sh
 echo "Removing maintain.sh from current: $TEMPDIR"
 rm -rf MAINTAIN_PAGE_DO_NOT_DELETE.html
 
