@@ -71,11 +71,6 @@ php artisan cache:clear
 php artisan event:cache
 php artisan view:cache
 
-chown -R  root:apache storage
-chown -R  root:apache bootstrap/cache
-
-chmod -R 775 storage
-chmod -R 775 bootstrap/cache
 
 echo "Rebuilding laravel storage link"
 php artisan storage:link
