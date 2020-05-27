@@ -12,7 +12,7 @@ rm -rf $BACKUPDIR
 if [ -d $DIR ] 
 then
     echo "Making backup of previous $NAME." 
-    mv -rf $DIR $BACKUPDIR
+    mv -f $DIR/{.,}* $BACKUPDIR/
 else
     echo "No previous $NAME is found. Skipping backup."
 fi
