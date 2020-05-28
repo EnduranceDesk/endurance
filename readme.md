@@ -9,4 +9,6 @@
 
 `git clone https://github.com/AdnanHussainTurki/endurance`
 
-`sh /home/endurance/repo/endurance/deploy.sh`
+`cd /home/endurance/repo/endurance`
+
+`sh deploy.sh`
