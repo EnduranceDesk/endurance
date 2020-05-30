@@ -62,11 +62,14 @@ class LoginController extends Controller
 
             return $this->sendLockoutResponse($request);
         }
+        if ((User::where("username", $request->input("username"))->first()) AND ($request->input("username") != "root")) {
+            if ($this->attemptLogin($request)) {
+                return $this->sendLoginResponse($request);
+            }
+        } 
 
-        if ($this->attemptLogin($request)) {
 
-            return $this->sendLoginResponse($request);
-        }
+        
 
         // If the login attempt was unsuccessful we will increment the number of attempts
         // to login and redirect the user back to the login form. Of course, when this
@@ -84,11 +87,14 @@ class LoginController extends Controller
     }
     public function attemptLogin(Request $request)
     {
-        if (LinuxUser::validate($request->input("username"), $request->input("password"))) {
-            return true;
-        } else {
-            return false;
-        }
+        if (($user = User::where("username", $request->input("username"))->first()) AND ($request->input("username") != "root")) {
+            if (LinuxUser::validate($user, $request->input("password"))) {
+                return true;
+            } else {
+                return false;
+            }
+        } 
+        
     }
     protected function sendLoginResponse(Request $request)
     {
@@ -98,22 +104,11 @@ class LoginController extends Controller
             return $this->sendFailedLoginResponse($request);
         }
 
-        if ($request->input("username") != "root") {
-            $this->incrementLoginAttempts($request);
+        if ((!User::where("username", $request->input("username"))->first()) AND ($request->input("username") == "root")) {
+             $this->incrementLoginAttempts($request);
             return $this->sendFailedLoginResponse($request);
-        }
-
-        if (User::where("username", $request->input("username"))->count() === 0) {
-            $user = new User;
-            $user->name = $request->input("username");
-            $user->username = $request->input("username");
-            $user->email = $request->input("username") . "@localhost";
-            $user->save();
-        } elseif (User::where("username", $request->input("username"))->count() === 1) {
-            $user = User::where("username", $request->input("username"))->first();
-        } else {
-            die("POSSIBLE SECURITY ISSUE. CONTACT SUPPORT.");
-        }
+        } 
+        
         Auth::login($user);
         $request->session()->regenerate();
         $this->clearLoginAttempts($request);

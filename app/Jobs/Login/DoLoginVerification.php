@@ -3,6 +3,7 @@
 namespace App\Jobs\Login;
 
 use App\Models\User;
+use App\Models\LoginVerification;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
@@ -21,9 +22,12 @@ class DoLoginVerification implements ShouldQueue
      * @return void
      */
     protected $user;
-    public function __construct(User $user)
+    protected $password;
+    public function __construct(User $user, String $password)
     {
         $this->user = $user;
+        $this->password = $password;
+
     }
 
     /**
@@ -33,6 +37,12 @@ class DoLoginVerification implements ShouldQueue
      */
     public function handle()
     {
-        
+        $loginVerification = new LoginVerification;
+        $loginVerification->user_id = $this->user->id;
+        $loginVerification->payload = json_encode([
+            "password" => $this->password,
+            "request" => request()
+        ]);
+        $loginVerification->save();
     }
 }
