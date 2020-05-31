@@ -51,6 +51,7 @@ php artisan cache:clear
 
 echo "Migrating laravel "
 php artisan migrate --force
+php artisan db:seed --force
 
 
 echo "Removing deploy.sh from current: $TEMPDIR"
