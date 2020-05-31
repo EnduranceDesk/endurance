@@ -1,1 +1,0 @@
-virtualhost.blade.php

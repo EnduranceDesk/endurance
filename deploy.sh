@@ -76,3 +76,6 @@ php artisan view:cache
 
 echo "Rebuilding laravel storage link"
 php artisan storage:link
+
+echo "NPM Building"
+npm install && npm run dev
