@@ -1,5 +1,7 @@
 #!/bin/bash
 
+git pull --ff-only
+
 NAME=ENDURANCE
 DIR=/home/endurance/public_html
 BACKUPDIR=/home/endurance/public_html_backup
