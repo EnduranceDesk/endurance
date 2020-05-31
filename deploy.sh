@@ -79,3 +79,4 @@ php artisan view:cache
 echo "Rebuilding laravel storage link"
 php artisan storage:link
 
+npm run production
