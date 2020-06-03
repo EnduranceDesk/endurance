@@ -24,6 +24,7 @@
         "vue-template-compiler": "^2.6.10"
     },
     "dependencies": {
+        "gentelella": "^1.4.0",
         "pnotify": "^5.1.2"
     }
 }
