@@ -4,8 +4,53 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "53836935ea3674a9573fe1674560f4e8",
+    "content-hash": "3bea4f9e90d607674c2737ee6b6469a2",
     "packages": [
+        {
+            "name": "ademarre/binary-to-text-php",
+            "version": "v3.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ademarre/binary-to-text-php.git",
+                "reference": "5d98d17be16d65e03851654a717293a4317bb947"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ademarre/binary-to-text-php/zipball/5d98d17be16d65e03851654a717293a4317bb947",
+                "reference": "5d98d17be16d65e03851654a717293a4317bb947",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.2.14"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Base2n": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Andre DeMarre",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Collection of binary-to-text encoding utilities for PHP. Includes Base32 support and much more.",
+            "homepage": "https://github.com/ademarre/binary-to-text-php",
+            "keywords": [
+                "base-4",
+                "base-8",
+                "base32",
+                "binary",
+                "octal",
+                "rfc4648"
+            ],
+            "time": "2015-02-27T05:11:22+00:00"
+        },
         {
             "name": "asm89/stack-cors",
             "version": "1.3.0",
@@ -57,6 +102,49 @@
                 "stack"
             ],
             "time": "2019-12-24T22:41:47+00:00"
+        },
+        {
+            "name": "badcow/dns",
+            "version": "v3.5.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Badcow/DNS.git",
+                "reference": "10f48abc66989eaa0047cb13e4098a10cab53357"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Badcow/DNS/zipball/10f48abc66989eaa0047cb13e4098a10cab53357",
+                "reference": "10f48abc66989eaa0047cb13e4098a10cab53357",
+                "shasum": ""
+            },
+            "require": {
+                "ademarre/binary-to-text-php": "~3.0.0",
+                "php": "~7.2",
+                "rlanvin/php-ip": "~2.0"
+            },
+            "require-dev": {
+                "friendsofphp/php-cs-fixer": "~2.1",
+                "phpstan/phpstan": "^0.11.6",
+                "phpunit/phpunit": "~8.4"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Badcow\\DNS\\": "lib/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Sam Williams",
+                    "email": "sam@badcow.co"
+                }
+            ],
+            "description": "A PHP library for creating DNS zone files based on RFC1035",
+            "time": "2020-03-20T22:10:18+00:00"
         },
         {
             "name": "brick/math",
@@ -2753,6 +2841,46 @@
                 "uuid"
             ],
             "time": "2020-03-29T20:13:32+00:00"
+        },
+        {
+            "name": "rlanvin/php-ip",
+            "version": "v2.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/rlanvin/php-ip.git",
+                "reference": "4ace47ed75308ea44f54fa132959dcbf0ef24398"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/rlanvin/php-ip/zipball/4ace47ed75308ea44f54fa132959dcbf0ef24398",
+                "reference": "4ace47ed75308ea44f54fa132959dcbf0ef24398",
+                "shasum": ""
+            },
+            "require": {
+                "ext-gmp": "*",
+                "php": "~7.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": ">=6.5 <8.1"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "PhpIP\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "IPv4/IPv6 manipulation library for PHP",
+            "homepage": "https://github.com/rlanvin/php-ip",
+            "keywords": [
+                "IP",
+                "ipv4",
+                "ipv6"
+            ],
+            "time": "2019-09-01T09:37:31+00:00"
         },
         {
             "name": "swiftmailer/swiftmailer",

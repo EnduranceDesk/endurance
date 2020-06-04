@@ -18,7 +18,7 @@
       <ul class="nav navbar-nav navbar-right" style="max-width: 30%;">
         <li class="">
           <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-            <img src="/images/img.jpg" alt="">
+            <img src="/images/img.jpg" alt=""><span>{{ ucwords(Auth::user()->name)}}</span>
             <span class=" fa fa-angle-down"></span>
           </a>
           <ul class="dropdown-menu dropdown-usermenu pull-right">
@@ -36,8 +36,6 @@
             </li>
           </ul>
         </li>
-        {{-- @include("layouts.partials.dispatch_cart") --}}
-        {{-- @include("layouts.partials.currentTime") --}}
       </ul>
     </nav>
   </div>

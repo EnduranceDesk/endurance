@@ -13,7 +13,7 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        // $this->middleware('auth');
+        $this->middleware('auth');
     }
 
     /**
@@ -25,8 +25,5 @@ class HomeController extends Controller
     {
         return view('home');
     }
-    public function test()
-    {
-        return view('test.test');
-    }
+  
 }

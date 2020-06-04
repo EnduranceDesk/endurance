@@ -1,10 +1,12 @@
 @extends('layouts.page')
+@section("title")
+Endurance Panel
+@endsection
 
 
 @section("page_title")
-dsfdsaf
+Hello {{ ucwords(Auth::user()->name)}}, 
 @endsection
 
 @section("page_content")
-adsfdsa
 @endsection
