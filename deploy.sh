@@ -75,6 +75,10 @@ php artisan cache:clear
 php artisan event:cache
 php artisan view:cache
 
+echo "Creating Passport Keys Directory"
+mkdir -p /home/endurance/secure
+php artisan passport:keys
+
 
 echo "Rebuilding laravel storage link"
 php artisan storage:link

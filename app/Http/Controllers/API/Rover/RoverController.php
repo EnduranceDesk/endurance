@@ -8,8 +8,8 @@ use App\Classes\MySQL\MySQL;
 use App\Classes\Server\Server;
 use App\Helpers\Responder;
 use App\Http\Controllers\Controller;
-use App\Models\User;
 use App\Models\Domain as DomainEloquent;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class RoverController extends Controller
@@ -19,6 +19,7 @@ class RoverController extends Controller
         $username = $request->input("username");
         $domain = $request->input("domain");
         $password = $request->input("password");
+
 
         if ((!$request->input("username")) || (!$request->input("password")) || (!$request->input("domain")) ) {
             return response()->json(Responder::build(400,false, "Bad Request",[],"username or password or domain not supplied"), 400);
@@ -54,6 +55,9 @@ class RoverController extends Controller
             $mysql = new MySQL("localhost", "root", "rootkapassword", "mysql");            
             $dbSetCreated = $mysql->createUserSet($username, $password);
         } catch (\Exception $e) {
+            LinuxUser::remove($username);
+            $mysql = new MySQL("localhost", "root", "rootkapassword", "mysql");            
+            $mysql->removeUserSet($username);
             return response()->json(Responder::build(500,false, "Error while building rover. ", [], $e->getMessage()), 500);
         }
         if (!$dbSetCreated) {
@@ -64,6 +68,9 @@ class RoverController extends Controller
             $domainObject = new Domain();
             $domainCreated = $domainObject->addMainDomain($domain,$username);
         } catch (\Exception $e) {
+            LinuxUser::remove($username);
+            $mysql = new MySQL("localhost", "root", "rootkapassword", "mysql");            
+            $mysql->removeUserSet($username);
             return response()->json(Responder::build(500,false, "Error while building rover. ", [], $e->getMessage()), 500);
         }
         if (!$domainCreated) {
@@ -76,7 +83,8 @@ class RoverController extends Controller
         $user = new User;
         $user->name = $username;
         $user->email = $username . "@localhost";
-        $user->username->save();
+        $user->username =  $username;
+        $user->save();
 
         $domainEloquent = new DomainEloquent;
         $domainEloquent->user_id = $user->id;

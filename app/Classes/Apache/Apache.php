@@ -41,9 +41,7 @@ class Apache
         if (file_exists($phpfpm_path)) {
             unlink($phpfpm_path);
         }
-        if (file_exists($this->sock . $domain_without_www . ".sock")) {
-            # code...
-        }
+        
         file_put_contents($phpfpm_path, $php72fpmconfig);
         if (file_exists($phpfpm_path) & file_exists($vhost_path)) {
             $this->rebuildOtherVhosts();

@@ -25,11 +25,13 @@ class MySQL
         $check = $this->createUser($username, $password);
         if (!$check) {
             $this->dropDatabase($db);
+            return false;
         }
         $check = $this->linkDBToUser($db, $username);
         if (!$check) {
             $this->dropDatabase($db);
             $this->dropUser($username);
+            return false;
         }
         return true;
     }
