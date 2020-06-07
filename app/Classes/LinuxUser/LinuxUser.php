@@ -48,6 +48,7 @@ user=$1
 passwd=$2
 /usr/sbin/useradd $user -d /home/$user  -m  ;
 echo $passwd | passwd $user --stdin;
+chmod 711 /home/$user
 ';
         $check = file_put_contents('/adduser.sh', $script);
         chmod('/adduser.sh', 0700);

@@ -20,11 +20,11 @@ class Apache
         $indexFile = $public_html . DIRECTORY_SEPARATOR . "index.php";
         if (!file_exists($public_html)) {
             mkdir($public_html);
-            chmod($public_html, 0751);
+            chmod($public_html, 0750);
             file_put_contents($indexFile, "<?php phpinfo() ?>");
             chmod($indexFile, 0664);
             chown($public_html, $username);
-            chgrp($public_html, $username);
+            chgrp($public_html, "apache");
             chown($indexFile, $username);
             chgrp($indexFile, $username);
         }
