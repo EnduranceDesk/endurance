@@ -31,6 +31,11 @@ class Endeavour
         $response = $this->post($this->host . "/raven/server/ip/set", ['ip'=>$ip]);
         return $response;
     }
+    public function getServerIP()
+    {
+        $response = $this->post($this->host . "/raven/server/ip/set");
+        return $response;
+    }
     protected function post($url, $parameters)
     {
         $ch = curl_init($url);

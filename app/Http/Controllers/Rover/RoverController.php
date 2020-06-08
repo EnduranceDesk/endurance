@@ -14,8 +14,7 @@ class RoverController extends Controller
     {
         $rootToken = $request->session()->get('root');
         $endeavour = new Endeavour($rootToken);
-        $server = new EndeavourServer;
-        if (!$server->get()) {
+        if (!$endeavour->getServerIP()->success) {
             return redirect(route("server.config.ip"))->withError("Please register the server ip address with the Endurance first.");
         }
         return view("rover.builder.home", ['server' => $server]);
