@@ -33,10 +33,10 @@ class Endeavour
     }
     public function getServerIP()
     {
-        $response = $this->post($this->host . "/raven/server/ip/set");
+        $response = $this->post($this->host . "/raven/server/ip/get");
         return $response;
     }
-    protected function post($url, $parameters)
+    protected function post($url, $parameters = [])
     {
         $ch = curl_init($url);
         curl_setopt($ch, CURLOPT_URL, $url);
