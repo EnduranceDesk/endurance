@@ -84,8 +84,8 @@ php artisan view:cache
 echo "Rebuilding laravel storage link"
 php artisan storage:link
 
-npm install production
-npm run production
+# npm install production
+# npm run production
 
 
 echo "888888888888888888888888888888888888888888888888888888888888888888888"
