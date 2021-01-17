@@ -13,7 +13,11 @@ class ServerController extends Controller
     {
         $rootToken = $request->session()->get('root');
         $endeavour = new Endeavour($rootToken);
-        $ip = $endeavour->getServerIP()->data->ip;
+        if (!$endeavour->getServerIP()->success) {
+            $ip = $_SERVER['SERVER_ADDR'];
+        } else {
+            $ip = $endeavour->getServerIP()->data->ip;
+        }
         return view("server.ip.home", ['ip' => $ip]);
     }
     public function setIP(Request $request)
