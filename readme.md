@@ -2,6 +2,8 @@
 
 ### Installation
 
+`su endurance`
+
 `mkdir -p /home/endurance/repo`
 
 `cd /home/endurance/repo`
@@ -11,3 +13,5 @@
 `cd /home/endurance/repo/endurance`
 
 `sh deploy.sh`
+
+`exit`
