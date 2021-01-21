@@ -12,7 +12,7 @@ class Endeavour
     function __construct($token = null)
     {
         $this->token = $token;
-        $this->host = file_get_contents("/home/endurance/endeavour.ip");
+        $this->host = "http://" . file_get_contents("/home/endurance/endeavour.ip") . ":1021";
     }
     public function login($username, $password) {
         $response = $this->post($this->host . "/raven/login", ['username'=>$username, 'password'=> $password]);
@@ -27,6 +27,7 @@ class Endeavour
         $response = $this->post($this->host . "/raven/rover/build", ['username'=>$username, 'password'=> $password, 'domain' => $domain]);
         return $response;
     }
+    
     public function setServerIP($ip)
     {
         $response = $this->post($this->host . "/raven/server/ip/set", ['ip'=>$ip]);
