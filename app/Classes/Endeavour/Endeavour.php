@@ -22,12 +22,21 @@ class Endeavour
     {
         $this->token = $token;
     }
+    public function getRovers()
+    {
+        $response = $this->post($this->host . "/raven/rover/list");
+        return $response;
+    }
     public function buildRover($username, $domain, $password)
     {
         $response = $this->post($this->host . "/raven/rover/build", ['username'=>$username, 'password'=> $password, 'domain' => $domain]);
         return $response;
     }
-    
+    public function destroyRover($username)
+    {
+        $response = $this->post($this->host . "/raven/rover/destroy", ['username'=>$username]);
+        return $response;
+    }
     public function setServerIP($ip)
     {
         $response = $this->post($this->host . "/raven/server/ip/set", ['ip'=>$ip]);

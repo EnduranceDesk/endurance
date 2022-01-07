@@ -11,6 +11,9 @@
       <li>
         <a href="{{ route("rover.builder") }}"><i class="fa fa-rocket"></i> ROVER BUILDER</span></a>
       </li>
+      <li>
+        <a href="{{ route("rover.list") }}"><i class="fa fa-rocket"></i> ROVERS</span></a>
+      </li>
     </ul>
     <h3>SERVER</h3>
     <ul class="nav side-menu">
