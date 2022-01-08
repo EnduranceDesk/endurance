@@ -39,12 +39,12 @@ class RoverController extends Controller
         try {
             $response = $endeavour->buildRover($username, $domain, $password);
         } catch (\Exception $e) {
-            return redirect()->back()->withError("Something went wrong. Please try again.");            
+            return redirect()->back()->withError("Something went wrong. Please try again.");
         }
         if ($response->success) {
-            return redirect()->back()->withSuccess("Operation successful.");            
+            return redirect()->back()->withSuccess("Operation successful. " . $response->message);
         } else {
-            return redirect()->back()->withSuccess("Operation failed.");            
+            return redirect()->back()->withSuccess("Operation failed. " . $response->message);
         }
     }
     public function getDestroy(Request $request, string $username)
