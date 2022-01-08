@@ -42,9 +42,9 @@ class RoverController extends Controller
             return redirect()->back()->withError("Something went wrong. Please try again.");
         }
         if ($response->success) {
-            return redirect()->back()->withSuccess("Operation successful. " . $response->message);
+            return redirect()->back()->withSuccess("Operation successful. " . $response->debug_msg);
         } else {
-            return redirect()->back()->withSuccess("Operation failed. " . $response->message);
+            return redirect()->back()->withSuccess("Operation failed. " . $response->debug_msg);
         }
     }
     public function getDestroy(Request $request, string $username)
