@@ -27,9 +27,14 @@ class Endeavour
         $response = $this->post($this->host . "/raven/rover/list");
         return $response;
     }
-    public function buildRover($username, $domain, $password)
+    public function getPreparationData()
     {
-        $response = $this->post($this->host . "/raven/rover/build", ['username'=>$username, 'password'=> $password, 'domain' => $domain]);
+        $response = $this->post($this->host . "/raven/rover/prepare", []);
+        return $response;
+    }
+    public function buildRover($username, $domain, $password, $php_version)
+    {
+        $response = $this->post($this->host . "/raven/rover/build", ['username'=>$username, 'password'=> $password, 'domain' => $domain, 'php_version' => $php_version]);
         return $response;
     }
     public function destroyRover($username)
@@ -55,9 +60,9 @@ class Endeavour
         curl_setopt($ch, CURLOPT_POSTFIELDS ,$parameters);
         if ($this->token) {
             curl_setopt($ch, CURLOPT_HTTPHEADER, array(
-                'Authorization: Bearer ' . $this->token, 
+                'Authorization: Bearer ' . $this->token,
             ));
-        } 
+        }
         $result = curl_exec($ch);
         curl_close($ch);
         return json_decode($result);

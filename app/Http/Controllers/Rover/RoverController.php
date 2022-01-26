@@ -26,18 +26,21 @@ class RoverController extends Controller
             return redirect(route("server.config.ip"))->withError("Please register the server ip address with the Endurance first.");
         }
         $ip = $endeavour->getServerIP()->data->ip;
-        return view("rover.builder.home", ['ip' => $ip]);
+        $php_versions =$endeavour->getPreparationData()->data->php;
+
+        return view("rover.builder.home", ['ip' => $ip, 'php_versions' => $php_versions]);
     }
     public function postBuilder(Request $request)
     {
         $username = $request->input("username");
         $domain = $request->input("domain");
         $password = $request->input("password");
+        $php_version = $request->input("php_version");
 
         $rootToken = $request->session()->get('root');
         $endeavour = new Endeavour($rootToken);
         try {
-            $response = $endeavour->buildRover($username, $domain, $password);
+            $response = $endeavour->buildRover($username, $domain, $password, $php_version);
         } catch (\Exception $e) {
             return redirect()->back()->withError("Something went wrong. Please try again.");
         }

@@ -15,3 +15,7 @@
 `sh deploy.sh`
 
 `exit`
+
+
+### Port is 1023 for Non SSL
+### Port is 1024 for SSL

@@ -17,6 +17,14 @@ Rover Builder
     <label>Password</label>
     <input type="password" name="password" class="form-control " required >
     <br>
+    <label>PHP Version</label>
+    <select name="php_version" id="php_version" class="form-control" required>
+        <option value="">Select</option>
+        @foreach ($php_versions as $version)
+            <option value="{{$version}}">{{$version}}</option>
+        @endforeach
+    </select>
+    <br>
     <input type="submit" value="Build Rover" class="btn btn-success btn-block">
 
 </form>
