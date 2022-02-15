@@ -27,6 +27,16 @@ class Endeavour
         $response = $this->post($this->host . "/raven/rover/list");
         return $response;
     }
+    public function getPHPVersions()
+    {
+        $response = $this->post($this->host . "/raven/php/versions", []);
+        return $response;
+    }
+    public function changePHPVersion($domain, $version)
+    {
+        $response = $this->post($this->host . "/raven/php/version/domain/update", ["domain" => $domain, "php_version" => $version]);
+        return $response;
+    }
     public function getPreparationData()
     {
         $response = $this->post($this->host . "/raven/rover/prepare", []);
@@ -39,7 +49,7 @@ class Endeavour
     }
     public function destroyRover($username)
     {
-        $response = $this->post($this->host . "/raven/rover/destroy", ['username'=>$username]);
+        $response = $this->post($this->host . "/ravusen/rover/destroy", ['username'=>$username]);
         return $response;
     }
     public function setServerIP($ip)
@@ -58,6 +68,8 @@ class Endeavour
         curl_setopt($ch, CURLOPT_URL, $url);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($ch, CURLOPT_POSTFIELDS ,$parameters);
+        curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 0);
+        curl_setopt($ch, CURLOPT_TIMEOUT, 60);
         if ($this->token) {
             curl_setopt($ch, CURLOPT_HTTPHEADER, array(
                 'Authorization: Bearer ' . $this->token,
@@ -65,6 +77,11 @@ class Endeavour
         }
         $result = curl_exec($ch);
         curl_close($ch);
+        if ($result === null
+            && json_last_error() !== JSON_ERROR_NONE) {
+            throw \Exception("Non-JSON data received from Endeavour!");
+            return null;
+        }
         return json_decode($result);
     }
 

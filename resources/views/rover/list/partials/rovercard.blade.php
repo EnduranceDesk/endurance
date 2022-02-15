@@ -50,9 +50,33 @@
                     </div>
                 </dl>
                 <div class="row">
+                    <div class="col-12">
+                        <p><b>Current PHP: </b> {{json_decode($domain->metadata)->current_php}}</p>
+                    </div>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col-12">
+                        <form action="{{ route("rover.php.change") }}" method="post">
+                            @csrf
+                            <input type="hidden" name="domain" value="{{$domain->name}}">
+                            <label>Select PHP version:</label>
+                            <select name="php_version" id="php_version" required class="form-control">
+                                <option value="">Select</option>
+                                @foreach ($phpVersions as $php)
+                                    <option @if(json_decode($domain->metadata)->current_php == $php) disabled @endif value="{{$php}}">{{$php}}</option>
+                                @endforeach
+                            </select>
+                            <br>
+                            <button type="submit" class="btn btn-sm btn-danger m-2">Change</button>
+                        </form>
+                    </div>
+                </div>
+                <hr>
+                <div class="row">
                     <div class="col-md-12 col-lg-12 col-sm-12" style="text-align: right;">
                         <a href="{{ route("rover.destroy", ['username' => $rover->name]) }}" class="btn btn-sm btn-danger"><i class="fa fa-remove"></i> Destroy</a>
-                        
+
                     </div>
                 </div>
             @endforeach

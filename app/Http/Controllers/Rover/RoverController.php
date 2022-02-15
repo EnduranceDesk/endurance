@@ -15,7 +15,8 @@ class RoverController extends Controller
         $rootToken = $request->session()->get('root');
         $endeavour = new Endeavour($rootToken);
         $rovers = $endeavour->getRovers();
-        return view("rover.list.index",['rovers' => $rovers->data]);
+        $phpVersions = $endeavour->getPHPVersions()->data->php;
+        return view("rover.list.index",['rovers' => $rovers->data, "phpVersions" => $phpVersions]);
 
     }
     public function getBuilder(Request $request)
@@ -41,6 +42,24 @@ class RoverController extends Controller
         $endeavour = new Endeavour($rootToken);
         try {
             $response = $endeavour->buildRover($username, $domain, $password, $php_version);
+        } catch (\Exception $e) {
+            return redirect()->back()->withError("Something went wrong. Please try again.");
+        }
+        if ($response->success) {
+            return redirect()->back()->withSuccess("Operation successful. " . $response->debug_msg);
+        } else {
+            return redirect()->back()->withSuccess("Operation failed. " . $response->debug_msg);
+        }
+    }
+    public function postChangePHPVersion(Request $request)
+    {
+        $domain = $request->input("domain");
+        $php_version = $request->input("php_version");
+
+        $rootToken = $request->session()->get('root');
+        $endeavour = new Endeavour($rootToken);
+        try {
+            $response = $endeavour->changePHPVersion($domain, $php_version);
         } catch (\Exception $e) {
             return redirect()->back()->withError("Something went wrong. Please try again.");
         }
