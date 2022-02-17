@@ -34,13 +34,13 @@ class BuildGeneralPageView extends Command
 
     /**
      * Execute the console command.
-     * php artisan make:view couriers.manager --layout=page --section='title' --section='page_title' --section='page_content'   
+     * php artisan make:view couriers.manager --layout=page --section='title' --section='page_title' --section='page_content'
      * @return mixed
      */
     public function handle()
     {
 
-        
+
         if (isset(explode("=", $this->argument('path'))[1])) {
             $path = explode("=", $this->argument('path'))[1];
         } else {

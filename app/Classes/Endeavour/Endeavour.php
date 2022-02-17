@@ -62,6 +62,11 @@ class Endeavour
         $response = $this->post($this->host . "/raven/server/ip/get");
         return $response;
     }
+    public function getFileContent($file_path)
+    {
+        $response = $this->post($this->host . "/raven/file/view", ['filepath'=>$file_path]);
+        return $response;
+    }
     protected function post($url, $parameters = [])
     {
         $ch = curl_init($url);
@@ -77,12 +82,15 @@ class Endeavour
         }
         $result = curl_exec($ch);
         curl_close($ch);
-        if ($result === null
-            && json_last_error() !== JSON_ERROR_NONE) {
-            throw \Exception("Non-JSON data received from Endeavour!");
+        if (!$this->isJSON($result)) {
+            throw new \Exception("Non-JSON data received from Endeavour!");
             return null;
         }
         return json_decode($result);
     }
+    protected function isJson($string) {
+        json_decode($string);
+        return json_last_error() === JSON_ERROR_NONE;
+     }
 
 }
