@@ -14,6 +14,10 @@ class Process extends Model
     {
         return json_decode($this->data);
     }
+    public function getArgumentsAttribute()
+    {
+        return json_encode($this->getData()->arguments);
+    }
     public function getTempLogPathAttribute()
     {
         return $this->getData()->temp_log_path;

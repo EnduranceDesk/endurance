@@ -49,7 +49,7 @@ class Endeavour
     }
     public function destroyRover($username)
     {
-        $response = $this->post($this->host . "/ravusen/rover/destroy", ['username'=>$username]);
+        $response = $this->post($this->host . "/raven/rover/destroy", ['username'=>$username]);
         return $response;
     }
     public function setServerIP($ip)
