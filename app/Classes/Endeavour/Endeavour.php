@@ -67,6 +67,11 @@ class Endeavour
         $response = $this->post($this->host . "/raven/file/view", ['filepath'=>$file_path]);
         return $response;
     }
+    public function changePassword($username, $password)
+    {
+        $response = $this->post($this->host . "/raven/change/password", ['username'=>$username, 'password'=> $password]);
+        return $response;
+    }
     protected function post($url, $parameters = [])
     {
         $ch = curl_init($url);
@@ -81,6 +86,7 @@ class Endeavour
             ));
         }
         $result = curl_exec($ch);
+        // dd($result);
         curl_close($ch);
         if (!$this->isJSON($result)) {
             throw new \Exception("Non-JSON data received from Endeavour!");
