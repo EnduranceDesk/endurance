@@ -89,7 +89,7 @@ class Endeavour
         // dd($result);
         curl_close($ch);
         if (!$this->isJSON($result)) {
-            throw new \Exception("Non-JSON data received from Endeavour!");
+            throw new \Exception("Non-JSON data received from Endeavour! ". substr($result,0,60));
             return null;
         }
         return json_decode($result);
