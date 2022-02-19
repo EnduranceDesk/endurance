@@ -10,6 +10,7 @@ Processes
     <thead >
         <tr class="headings">
             <th>#</th>
+            <th>Arguments</th>
             <th>Timeout</th>
             <th>Exit code</th>
             <th>Closed</th>
@@ -22,6 +23,7 @@ Processes
         @foreach($processes as $process)
         <tr>
             <td>PRS#{{$process->id}}</td>
+            <td>{{$process->arguments}}</td>
             <td>{{$process->timeout}} secs</td>
             <td>{{$process->exitcode}}</td>
             <td>{{$process->closed}}</td>
@@ -34,5 +36,7 @@ Processes
         </tr>
         @endforeach
     </tbody>
+
 </table>
+{{ $processes->links() }}
 @endsection

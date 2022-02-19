@@ -10,6 +10,10 @@ use Illuminate\Http\Request;
 
 class RoverController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware("auth");
+    }
     public function getList(Request $request)
     {
         $rootToken = $request->session()->get('root');

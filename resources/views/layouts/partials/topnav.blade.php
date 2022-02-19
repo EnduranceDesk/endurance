@@ -13,7 +13,7 @@
             </span>
           </form>
         </div>
-        
+
       </div>
       <ul class="nav navbar-nav navbar-right" style="max-width: 30%;">
         <li class="">
@@ -22,7 +22,7 @@
             <span class=" fa fa-angle-down"></span>
           </a>
           <ul class="dropdown-menu dropdown-usermenu pull-right">
-            <li><a href="">Change Password</a></li>
+            <li><a href="{{route("panel.password.change", ['username' => 'root'])}}">Change Password</a></li>
             <li><a href="mailto:adnanhussainturki@gmail.com">Help</a></li>
             <li>
                 <a class="dropdown-item" href="{{ route('logout') }}"
