@@ -2,43 +2,43 @@
     <div id="dependency-temp">
         <div class="row">
             <div class="col-md-6">
-                <input required type="text" name="dependency[__COUNTER__]['identifier']" placeholder="Module Slug" class="form-control">
+                <input required type="text" name="dependency[__COUNTER__][identifier]" placeholder="Module Slug" class="form-control">
             </div>
             <div class="col-md-3">
-                <input required type="number" name="dependency[__COUNTER__]['version_from']" placeholder="From" class="form-control">
+                <input required type="number" name="dependency[__COUNTER__][version_from]" placeholder="From" class="form-control">
             </div>
             <div class="col-md-3">
-                <input required type="number" name="dependency[__COUNTER__]['version_to']" placeholder="To" class="form-control">
+                <input required type="number" name="dependency[__COUNTER__][version_to]" placeholder="To" class="form-control">
             </div>
         </div>
     </div>
     <div id="singleton-temp">
         <div class="row">
             <div class="col-md-4">
-                <input required type="text" name="singletons[__COUNTER__]['name']" placeholder="Name" class="form-control">
+                <input required type="text" name="singletons[__COUNTER__][name]" placeholder="Name" class="form-control">
             </div>
             <div class="col-md-8">
-                <input required type="text" name="singletons[__COUNTER__]['command']" placeholder="Command" class="form-control">
+                <input required type="text" name="singletons[__COUNTER__][command]" placeholder="Command" class="form-control">
             </div>
         </div>
     </div>
     <div id="logs-temp">
         <div class="row">
             <div class="col-md-4">
-                <input required type="text" name="logs[__COUNTER__]['name']" placeholder="Name" class="form-control">
+                <input required type="text" name="logs[__COUNTER__][name]" placeholder="Name" class="form-control">
             </div>
             <div class="col-md-8">
-                <input  required type="text" name="logs[__COUNTER__]['command']" placeholder="File path" class="form-control">
+                <input  required type="text" name="logs[__COUNTER__][command]" placeholder="File path" class="form-control">
             </div>
         </div>
     </div>
     <div id="cron-temp">
         <div class="row">
             <div class="col-md-4">
-                <input required type="text" name="logs[__COUNTER__]['user']" placeholder="Name" class="form-control">
+                <input required type="text" name="logs[__COUNTER__][user]" placeholder="Name" class="form-control">
             </div>
             <div class="col-md-8">
-                <input required type="text" name="logs[__COUNTER__]['command']" placeholder="File path" class="form-control">
+                <input required type="text" name="logs[__COUNTER__][command]" placeholder="File path" class="form-control">
             </div>
         </div>
     </div>
@@ -56,10 +56,16 @@
                 </select>
             </div>
             <div class="col-md-8">
-                <input required type="text" name="scripts[__COUNTER__]['filename']" placeholder="filename from the stubs" class="form-control">
+                <select name="scripts[__COUNTER__][filename]" id="icon" class="form-control" required>
+                    <option value="">Select</option>
+                    @foreach ($filenames as $filename )
+                        <option>{{$filename}}</option>
+                    @endforeach
+                </select>
             </div>
 
         </div>
+        <br>
         <div class="row">
             <div class="col-md-6">
                 <select required name="scripts[__COUNTER__][shell]" class="form-control" >
@@ -80,7 +86,7 @@
     <div id="ports-temp">
         <div class="row">
             <div class="col-md-4">
-                <input required type="number" name="logs[__COUNTER__]['port']" placeholder="Port" class="form-control">
+                <input required type="number" name="logs[__COUNTER__][port]" placeholder="Port" class="form-control">
             </div>
             <div class="col-md-4">
                 <select required name="logs[__COUNTER__][type]" class="form-control" >
@@ -101,22 +107,22 @@
     <div id="configurations-temp">
         <div class="row">
             <div class="col-md-3">
-                <input required type="text" name="configurations[__COUNTER__]['name']" placeholder="Name" class="form-control">
+                <input required type="text" name="configurations[__COUNTER__][name]" placeholder="Name" class="form-control">
             </div>
             <div class="col-md-9">
-                <input required type="number" name="configurations[__COUNTER__]['filepath']" placeholder="Command" class="form-control">
+                <input required type="number" name="configurations[__COUNTER__][filepath]" placeholder="Command" class="form-control">
             </div>
         </div>
         <br>
         <div class="row">
             <div class="col-md-4">
-                <input required type="number" name="configurations[__COUNTER__]['editable']" placeholder="Editable" max="1" min="0" class="form-control">
+                <input required type="number" name="configurations[__COUNTER__][editable]" placeholder="Editable" max="1" min="0" class="form-control">
             </div>
             <div class="col-md-4">
-                <input required type="number" name="configurations[__COUNTER__]['requires_reload']" placeholder="Reload" max="1" min="0" class="form-control">
+                <input required type="number" name="configurations[__COUNTER__][requires_reload]" placeholder="Reload" max="1" min="0" class="form-control">
             </div>
             <div class="col-md-4">
-                <input required type="number" name="configurations[__COUNTER__]['requires_restart']" placeholder="Restart" max="1" min="0" class="form-control">
+                <input required type="number" name="configurations[__COUNTER__][requires_restart]" placeholder="Restart" max="1" min="0" class="form-control">
             </div>
         </div>
         <hr>

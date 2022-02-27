@@ -9,7 +9,7 @@ Step 1: Add files
     <form action="{{ route("modules.create.step2") }}" method="post" enctype="multipart/form-data">
         @csrf
         <label>Upload necessary files which may be used by this module</label>
-        <input type="file" required multiple class="form-control" >
+        <input type="file" name="stubs[]" required multiple class="form-control" >
         <br>
         <input type="submit" class="btn btn-primary btn-sm" value="Proceed">
     </form>
