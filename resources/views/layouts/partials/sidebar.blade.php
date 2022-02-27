@@ -22,6 +22,9 @@
             <a href="{{ route("processes") }}"><i class="fa fa-home"></i> Processes</span></a>
         </li>
         <li>
+            <a href="{{ route("modules.create") }}"><i class="fa fa-home"></i> Modules</span></a>
+        </li>
+        <li>
             <a href="{{ route("server.config.ip") }}"><i class="fa fa-home"></i> IP Config</span></a>
         </li>
     </ul>
