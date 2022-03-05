@@ -10,6 +10,10 @@ use Illuminate\Http\Request;
 
 class RoverController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware("auth");
+    }
     public function getList(Request $request)
     {
         $rootToken = $request->session()->get('root');
@@ -22,13 +26,17 @@ class RoverController extends Controller
     public function getBuilder(Request $request)
     {
         $rootToken = $request->session()->get('root');
-        $endeavour = new Endeavour($rootToken);
-        if (!$endeavour->getServerIP()->success) {
-            return redirect(route("server.config.ip"))->withError("Please register the server ip address with the Endurance first.");
-        }
-        $ip = $endeavour->getServerIP()->data->ip;
-        $php_versions =$endeavour->getPreparationData()->data->php;
+        try {
+            $endeavour = new Endeavour($rootToken);
+            if (!$endeavour->getServerIP()->success) {
+                return redirect(route("server.config.ip"))->withError("Please register the server ip address with the Endurance first.");
+            }
 
+            $ip = $endeavour->getServerIP()->data->ip;
+            $php_versions =$endeavour->getPreparationData()->data->php;
+        } catch (\Exception $e) {
+            return redirect("home")->withError("Something went wrong. Please try again. ". $e->getMessage());
+        }
         return view("rover.builder.home", ['ip' => $ip, 'php_versions' => $php_versions]);
     }
     public function postBuilder(Request $request)

@@ -73,6 +73,8 @@
                     </div>
                 </div>
                 <hr>
+                <a href="{{ route("panel.password.change", ['username' => $rover->username]) }}" class="btn btn-danger btn-sm">Change Password</a>
+                <hr>
                 <div class="row">
                     <div class="col-md-12 col-lg-12 col-sm-12" style="text-align: right;">
                         <a href="{{ route("rover.destroy", ['username' => $rover->name]) }}" class="btn btn-sm btn-danger"><i class="fa fa-remove"></i> Destroy</a>
