@@ -72,6 +72,11 @@ class Endeavour
         $response = $this->post($this->host . "/raven/change/password", ['username'=>$username, 'password'=> $password]);
         return $response;
     }
+    public function autoSSL($domain_without_www)
+    {
+        $response = $this->post($this->host . "/raven/domains/auto/ssl", ['domain'=>$domain_without_www]);
+        return $response;
+    }
     protected function post($url, $parameters = [])
     {
         $ch = curl_init($url);

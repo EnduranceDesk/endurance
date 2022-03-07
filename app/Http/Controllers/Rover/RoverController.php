@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Rover;
 use App\Classes\Endeavour\Endeavour;
 use App\Classes\Server\Server as EndeavourServer;
 use App\Http\Controllers\Controller;
+use App\Models\Rover;
 use App\Models\Server;
 use Illuminate\Http\Request;
 
@@ -86,6 +87,20 @@ class RoverController extends Controller
             return redirect(route("rover.list"))->withSuccess("Rover desctruction successful");
         }
         return redirect(route("rover.list"))->withError("Rover desctruction unsuccessful");
+
+    }
+    public function autoSSL(Request $request,$domain)
+    {
+        $rootToken = $request->session()->get('root');
+        $endeavour = new Endeavour($rootToken);
+        $sslResponse = $endeavour->autoSSL($domain);
+        if (is_null($sslResponse)) {
+            return redirect(route("home", ['domain' => $domain]))->withError("SSL not updated for domain: " . $domain );
+        }
+        if ($sslResponse->success) {
+            return redirect(route("home", ['domain' => $domain]))->withSuccess("SSL updated for domain: " . $domain );
+        }
+        return redirect(route("home", ['domain' => $domain]))->withError("SSL not updated for domain: " . $domain );
 
     }
 }
