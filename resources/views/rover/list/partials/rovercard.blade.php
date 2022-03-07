@@ -74,7 +74,7 @@
                 </div>
                 <hr>
                 <a href="{{ route("panel.password.change", ['username' => $rover->username]) }}" class="btn btn-danger btn-sm">Change Password</a>
-                <a href="{{ route("rover.ssl.auto", ['domain' => $domain]) }}" class="btn btn-sm btn-danger">AutoSSL</a>
+                <a href="{{ route("rover.ssl.auto", ['domain' => $domain->name]) }}" class="btn btn-sm btn-danger">AutoSSL</a>
                 <hr>
                 <div class="row">
                     <div class="col-md-12 col-lg-12 col-sm-12" style="text-align: right;">
