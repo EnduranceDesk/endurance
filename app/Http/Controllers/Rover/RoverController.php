@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Rover;
 
 use App\Classes\Endeavour\Endeavour;
 use App\Classes\Server\Server as EndeavourServer;
+use App\Helpers\Misc;
 use App\Http\Controllers\Controller;
 use App\Models\Rover;
 use App\Models\Server;
@@ -21,7 +22,15 @@ class RoverController extends Controller
         $endeavour = new Endeavour($rootToken);
         $rovers = $endeavour->getRovers();
         $phpVersions = $endeavour->getPHPVersions()->data->php;
-        return view("rover.list.index",['rovers' => $rovers->data, "phpVersions" => $phpVersions]);
+        $grouped= [];
+        foreach($rovers->data as $rover) {
+            foreach($rover->domains as $domain) {
+                $basedomain = Misc::get_domain(trim($domain->name) );
+                $domain->rover = $rover;
+                $grouped[$basedomain][] = $domain;
+            }
+        }
+        return view("rover.list.index",['rovers' => $rovers->data, 'grouped' => $grouped, "phpVersions" => $phpVersions]);
 
     }
     public function getBuilder(Request $request)

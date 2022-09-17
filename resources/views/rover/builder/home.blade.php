@@ -9,10 +9,10 @@ Rover Builder
 <form action="{{ route("rover.build") }}" method="post" autocomplete="off">
     @csrf
     <label>Username</label>
-    <input required type="text" name="username" class="form-control">
+    <input required type="text" name="username" class="form-control" pattern="[a-z0-9]+">
     <br>
     <label>Domain</label>
-    <input required type="text" name="domain" class="form-control" value="" placeholder="abdullah.com">
+    <input required type="text" name="domain" class="form-control" pattern="[a-zA-Z.]+\.[a-zA-Z]+" value="" placeholder="abdullah.com">
     <br>
     <label>Password</label>
     <input type="password" name="password" class="form-control " required >

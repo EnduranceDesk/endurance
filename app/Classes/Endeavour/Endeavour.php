@@ -77,6 +77,21 @@ class Endeavour
         $response = $this->post($this->host . "/raven/domains/auto/ssl", ['domain'=>$domain_without_www]);
         return $response;
     }
+    public function addCronEntry($rover, $command)
+    {
+        $response = $this->post($this->host . "/raven/rover/crons/add", ['rover'=>$rover, 'command' => $command]);
+        return $response;
+    }
+    public function deleteCronEntry($rover, $command)
+    {
+        $response = $this->post($this->host . "/raven/rover/crons/delete", ['rover'=>$rover, 'command' => $command]);
+        return $response;
+    }
+    public function fetchCronEntries($rover)
+    {
+        $response = $this->post($this->host . "/raven/rover/crons/fetch", ['rover'=>$rover]);
+        return $response;
+    }
     protected function post($url, $parameters = [])
     {
         $ch = curl_init($url);
@@ -91,7 +106,7 @@ class Endeavour
             ));
         }
         $result = curl_exec($ch);
-        // dd($result);
+        // die($result);
         curl_close($ch);
         if (!$this->isJSON($result)) {
             throw new \Exception("Non-JSON data received from Endeavour! ". substr($result,0,60));

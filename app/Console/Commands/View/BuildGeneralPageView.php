@@ -13,14 +13,14 @@ class BuildGeneralPageView extends Command
      *
      * @var string
      */
-    protected $signature = 'make:gpview {path}';
+    protected $signature ='gpview:make  {path}';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Building a general page view.';
+    protected $description = 'Command description';
 
     /**
      * Create a new command instance.
@@ -34,19 +34,14 @@ class BuildGeneralPageView extends Command
 
     /**
      * Execute the console command.
-     * php artisan make:view couriers.manager --layout=page --section='title' --section='page_title' --section='page_content'
-     * @return mixed
+     *
+     * @return int
      */
     public function handle()
     {
-
-
-        if (isset(explode("=", $this->argument('path'))[1])) {
-            $path = explode("=", $this->argument('path'))[1];
-        } else {
-            $path = $this->argument('path');
-        }
+        $path = $this->argument('path');
         $stream = fopen("php://output", "w");
-        Artisan::call("make:view " . $path . ' -e layouts.page -n',[] , new StreamOutput($stream));        return $stream;
+        Artisan::call("make:view $path --extends=layouts.page --with-yields",[] , new StreamOutput($stream));        return $stream;
+        return 0;
     }
 }

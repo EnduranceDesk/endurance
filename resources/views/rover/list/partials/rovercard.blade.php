@@ -1,7 +1,7 @@
 <div class="col-md-4 col-sm-4 ">
     <div class="x_panel tile ">
         <div class="x_title">
-            <h2>{{$rover->name}}</h2>
+            <h2>                {{$rover->name}}</h2>
             <ul class="nav navbar-right panel_toolbox">
                 <li>
                     <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
@@ -14,7 +14,14 @@
                 <div class="row">
                     <div class="col-md-12">
                         <b> Domain:</b>
+
+
                         <a href="http://{{$domain->name}}"  target="_blank">{{$domain->name}}</a>
+                        @if($domain->ssl)
+                            <i class="fa fa-lock  " style="color: #1abb9c;"></i>
+                        @else
+                            <i style="color: red;" class="fa fa-lock"></i>
+                        @endif
                     </div>
                 </div>
                 <br>
@@ -47,6 +54,7 @@
                                 <span class="badge bg-green bg-lg">MX</span>
                             @endif
                         </dd>
+
                     </div>
                 </dl>
                 <div class="row">

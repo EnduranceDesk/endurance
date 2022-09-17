@@ -6,7 +6,7 @@ Rovers
 Rovers
 @endsection
 @section("page_content")
-    @foreach($rovers as $rover)
-        @include("rover.list.partials.rovercard")
+    @foreach($grouped as $base => $domains)
+        @include("rover.list.partials.collapsable")
     @endforeach
 @endsection

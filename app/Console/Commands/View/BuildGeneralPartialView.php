@@ -3,9 +3,6 @@
 namespace App\Console\Commands\View;
 
 use Illuminate\Console\Command;
-use Illuminate\Support\Facades\Artisan;
-use Illuminate\Support\Facades\Storage;
-use Symfony\Component\Console\Output\StreamOutput;
 
 class BuildGeneralPartialView extends Command
 {
@@ -14,14 +11,14 @@ class BuildGeneralPartialView extends Command
      *
      * @var string
      */
-    protected $signature = 'make:gppview  {path}';
+    protected $signature = 'gppview:make  {path}';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Building a general partial view.';
+    protected $description = 'Command description';
 
     /**
      * Create a new command instance.
@@ -36,18 +33,13 @@ class BuildGeneralPartialView extends Command
     /**
      * Execute the console command.
      *
-     * @return mixed
+     * @return int
      */
     public function handle()
     {
-        if (isset(explode("=", $this->argument('path'))[1])) {
-            $path = explode("=", $this->argument('path'))[1];
-        } else {
-            $path = $this->argument('path');
-        }
+        $path = $this->argument('path');
         $path = base_path("resources" . DIRECTORY_SEPARATOR ."views") . DIRECTORY_SEPARATOR . str_replace(".", DIRECTORY_SEPARATOR  , $path) . ".blade.php";
 
-        
 
         $dir = str_replace(last(explode("\\", $path)), "", $path);
         if (!is_dir($dir)) {
