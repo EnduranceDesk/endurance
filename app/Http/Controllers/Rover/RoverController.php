@@ -18,6 +18,8 @@ class RoverController extends Controller
     }
     public function getList(Request $request)
     {
+
+
         $rootToken = $request->session()->get('root');
         $endeavour = new Endeavour($rootToken);
         $rovers = $endeavour->getRovers();
@@ -25,6 +27,7 @@ class RoverController extends Controller
         $grouped= [];
         foreach($rovers->data as $rover) {
             foreach($rover->domains as $domain) {
+                $domain->actual_ssl = Misc::checkValidSSL($domain->name);
                 $basedomain = Misc::get_domain(trim($domain->name) );
                 $domain->rover = $rover;
                 $grouped[$basedomain][] = $domain;

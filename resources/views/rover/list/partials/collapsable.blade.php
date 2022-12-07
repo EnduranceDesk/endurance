@@ -39,9 +39,14 @@ $random = random_int(1111111, 9999999);
                                 <td>{{$domain->type}}</td>
                                 <td style="text-align: center;">
                                     @if($domain->ssl)
-                                        <i class="fa fa-lock  " style="color: #1abb9c;"></i>
+                                        <i   title="SSL installed" class="fa fa-lock  " style="color: #1abb9c;"></i>
                                     @else
-                                        <i style="color: red;" class="fa fa-lock"></i>
+                                        <i  title="SSL not installed"  style="color: red;" class="fa fa-lock"></i>
+                                    @endif
+                                    @if($domain->actual_ssl)
+                                        <i title="SSL valid" class="fa fa-lock  " style="color: #1abb9c;"></i>
+                                    @else
+                                        <i title="SSL not valid" style="color: red;" class="fa fa-lock"></i>
                                     @endif
                                 </td>
                                 <td style="text-align: center;">{{json_decode($domain->metadata)->current_php}}</td>

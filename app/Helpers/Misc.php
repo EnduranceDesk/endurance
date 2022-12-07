@@ -19,4 +19,21 @@ class Misc {
         }
         return $myhost;
     }
+    public static function checkValidSSL($url) {
+        // Send a curl to url with ssl verification
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, $url);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 0);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, true);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 2);
+        curl_exec($ch);
+        $httpcode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+        curl_close($ch);
+        // Check if curl was successful
+        if ($httpcode == 200) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }
